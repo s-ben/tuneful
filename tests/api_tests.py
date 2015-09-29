@@ -38,16 +38,16 @@ class TestAPI(unittest.TestCase):
 
     def test_get_songs(self):
         """ Filtering posts by body and title"""
-        file_A = models.File(filename="File A")
-        file_B = models.File(filename="File B")
+        file_A = models.File(name="File A")
+        file_B = models.File(name="File B")
    
         session.add_all([file_A, file_B])
         session.commit()     
         # song_A.file = file_A
         # file_A.song = song_A
         
-        song_A = models.Song(file_id=file_A.id)
-        song_B = models.Song(file_id=file_B.id)
+        song_A = models.Song(file=file_A.id)
+        song_B = models.Song(file=file_B.id)
         
         session.add_all([song_A, song_B])
         session.commit()  
@@ -84,7 +84,7 @@ class TestAPI(unittest.TestCase):
         # self.assertEqual(post["body"], "Still a test")
     def test_post_songs(self):
         """ Filtering posts by body and title"""
-        file_A = models.File(filename="File A")
+        file_A = models.File(name="File A")
         # file_B = models.File(filename="File B")
         session.add(file_A)
         session.commit()    
@@ -114,12 +114,12 @@ class TestAPI(unittest.TestCase):
         # print response.data
     def test_post_songs_edit(self):
         """ Filtering posts by body and title"""
-        file_A = models.File(filename="File A")
-        file_B = models.File(filename="File B")
+        file_A = models.File(name="File A")
+        file_B = models.File(name="File B")
         session.add_all([file_A, file_B])
         session.commit()    
         
-        song_A = models.Song(file_id=file_A.id)
+        song_A = models.Song(file=file_A.id)
         # song_B = models.Song(file_id=file_B.id)
         
         session.add(song_A)
@@ -150,11 +150,11 @@ class TestAPI(unittest.TestCase):
         
     def test_songs_delete(self):
         """ Delete song by song id"""
-        file_A = models.File(filename="File A")
+        file_A = models.File(name="File A")
         session.add(file_A)
         session.commit()    
         
-        song_A = models.Song(file_id=file_A.id)
+        song_A = models.Song(file=file_A.id)
         session.add(song_A)
         session.commit()  
         

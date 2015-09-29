@@ -48,12 +48,7 @@ class File(Base):
     name = Column(String(1024))
     song = relationship("Song", backref="songs", uselist=False)
     
-    # def as_dictionary(self):
-    #     return {
-    #         "id": self.id,
-    #         "name": self.filename,
-    #         "path": url_for("uploaded_file", filename=self.filename)
-    #     }
+
     
     def as_dictionary(self):
         file = {
